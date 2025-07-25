@@ -9,10 +9,26 @@
       @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 font-sans">
+
+    <!-- Notifikasi Sukses -->
+   @if(session('success'))
+<div id="notification" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-3 rounded shadow-md flex">
+    <span class="mr-4">{{ session('success') }}</span>
+    <button onclick="this.parentElement.remove()" class="font-bold">&times;</button>
+</div>
+
+<script>
+    setTimeout(() => {
+        const notif = document.getElementById('notification');
+        if (notif) notif.remove();
+    }, 5000);
+</script>
+@endif
+
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <!-- Header -->
         <header class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Money Tracker</h1>
+            <h1 class="text-3xl font-bold text-indigo-600">Money Tracker</h1>
             <p class="text-gray-600">Kelola keuangan Anda dengan mudah</p>
         </header>
 
@@ -72,7 +88,7 @@
                             <i class="fas fa-money-bill-wave text-green-600"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="font-medium text-gray-800">{{ $uangMasuk->deskripsi }}</h3>
+                            <h3 class="font-medium text-gray-800">{{ $uangMasuk->deskripsi}}</h3>
                             <p class="text-sm text-gray-500">{{date_format($uangMasuk->tanggal,"Y/m/d")  }}</p>
                         </div>
                         <div class="text-right">
@@ -121,8 +137,8 @@
                     
                 </div>
                 
-                 <a href="/tambahKeluar"><button class="mt-4 w-full py-2 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-plus mr-2"></i>Tambah Uang Masuk
+                 <a href="{{ route("moneyTrack.keluar-create") }}"><button class="mt-4 w-full py-2 text-red-600 font-medium rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-plus mr-2"></i>Tambah Uang Keluar
                 </button></a>
             </div>
         </div>

@@ -13,7 +13,7 @@
         <div class="flex items-center justify-between mb-8">
             <div>
                 <h1 class="text-2xl font-bold text-gray-800">
-                    <a href="MoneyTrack" class="text-blue-600 hover:text-blue-800">
+                    <a href="{{ route('moneyTrack') }}" class="text-blue-600 hover:text-blue-800">
                         <i class="fas fa-arrow-left mr-2"></i>
                     </a>
                     Tambah Uang Keluar
@@ -23,81 +23,101 @@
             <div class="bg-red-100 p-3 rounded-full">
                 <i class="fas fa-wallet text-red-600 text-xl"></i>
             </div>
+
+           
         </div>
 
         <!-- Form -->
         <div class="bg-white rounded-lg shadow-md p-6">
-            <form id="expenseForm">
+            <form action="{{ route("moneyTrack.keluar-store") }}" method="POST">
+                <!-- CSRF Token -->
+                @csrf
                 <!-- Jumlah -->
                 <div class="mb-6">
-                    <label for="amount" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="jumlah" class="block text-sm font-medium text-gray-700 mb-2">
                         Jumlah <span class="text-red-500">*</span>
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="text-gray-500">Rp</span>
                         </div>
-                        <input type="number" id="amount" name="amount" 
+                        <input type="text" id="jumlah" name="jumlah_formated" 
                                class="block w-full pl-12 pr-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
                                placeholder="0" required>
+                        <input type="hidden" name="jumlah" id="jumlah_numeric">
+                        @error('jumlah')
+                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
                 <!-- Kategori -->
                 <div class="mb-6">
-                    <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">
                         Kategori <span class="text-red-500">*</span>
                     </label>
-                    <select id="category" name="category" 
+                    <select id="kategori" name="kategori" 
                             class="block w-full pl-3 pr-10 py-3 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md">
-                        <option value="food">Makanan & Minuman</option>
-                        <option value="transportation">Transportasi</option>
-                        <option value="shopping">Belanja</option>
-                        <option value="bills">Tagihan</option>
-                        <option value="entertainment">Hiburan</option>
-                        <option value="health">Kesehatan</option>
-                        <option value="education">Pendidikan</option>
-                        <option value="other">Lainnya</option>
+                        <option value="Makanan & Minuman">Makanan & Minuman</option>
+                        <option value="Transportasi">Transportasi</option>
+                        <option value="Belanja">Belanja</option>
+                        <option value="Tagihan">Tagihan</option>
+                        <option value="Hiburan">Hiburan</option>
+                        <option value="Kesehatan">Kesehatan</option>
+                        <option value="Pendidikan">Pendidikan</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
+                    @error('kategori')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Metode Pembayaran -->
                 <div class="mb-6">
-                    <label for="payment_method" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="metode_pembayaran" class="block text-sm font-medium text-gray-700 mb-2">
                         Metode Pembayaran
                     </label>
-                    <select id="payment_method" name="payment_method" 
+                    <select id="metode_pembayaran" name="metode_pembayaran" 
                             class="block w-full pl-3 pr-10 py-3 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md">
-                        <option value="cash">Tunai</option>
-                        <option value="debit">Kartu Debit</option>
-                        <option value="credit">Kartu Kredit</option>
-                        <option value="ewallet">E-Wallet</option>
-                        <option value="transfer">Transfer Bank</option>
+                        <option value="Tunai">Tunai</option>
+                        <option value="Debit">Kartu Debit</option>
+                        <option value="Kredit">Kartu Kredit</option>
+                        <option value="E-wallet">E-Wallet</option>
+                        <option value="Transfer">Transfer Bank</option>
                     </select>
+                    @error('metode_pembayaran')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
                 </div>
 
                 <!-- Tanggal -->
                 <div class="mb-6">
-                    <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="tanggal" class="block text-sm font-medium text-gray-700 mb-2">
                         Tanggal <span class="text-red-500">*</span>
                     </label>
-                    <input type="date" id="date" name="date" 
+                    <input type="date" id="tanggal" name="tanggal" 
                            class="block w-full pl-3 pr-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
                            required>
+                    @error('tanggal')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Deskripsi -->
                 <div class="mb-6">
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">
                         Deskripsi
                     </label>
-                    <textarea id="description" name="description" rows="3" 
+                    <textarea id="deskripsi" name="deskripsi" rows="3" 
                               class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
                               placeholder="Tambahkan catatan (opsional)"></textarea>
+                    @error('deskripsi')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Upload Bukti -->
-                <div class="mb-8">
+                <div class="mb-8 hidden">
                     <label class="block text-sm font-medium text-gray-700 mb-2">
                         Upload Bukti (Opsional)
                     </label>
@@ -127,37 +147,8 @@
         </div>
     </div>
 
-    <script>
-        // Set default date to today
-        document.getElementById('date').valueAsDate = new Date();
-        
-        // Form submission handler
-        document.getElementById('expenseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const amount = document.getElementById('amount').value;
-            const category = document.getElementById('category').value;
-            const payment_method = document.getElementById('payment_method').value;
-            const date = document.getElementById('date').value;
-            const description = document.getElementById('description').value;
-            
-            // Here you would typically send data to server or add to local storage
-            console.log({
-                amount,
-                category,
-                payment_method,
-                date,
-                description,
-                type: 'expense'
-            });
-            
-            // Show success message
-            alert('Pengeluaran berhasil dicatat!');
-            
-            // Redirect back to main page
-            window.location.href = 'MoneyTrack';
-        });
-    </script>
+   
+
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

@@ -18,10 +18,10 @@ class KeuanganController extends Controller
 
         //mengambil data uang masuk dan uang keluar terbaru
         $uangMasuks = UangMasuk::latest()->paginate(5);
-        $uangKeluars = UangKeluar::orderBy('created_at', 'desc')->get();
+        $uangKeluars = UangKeluar::latest()->paginate(5);
 
         //mengirim data ke view
-        return view('keuangan.MoneyTrack', compact('totalMasuk', 'totalKeluar', 'totalSaldo', 'uangMasuks', 'uangKeluars'));
+        return view('keuangan.moneyTrack', compact('totalMasuk', 'totalKeluar', 'totalSaldo', 'uangMasuks', 'uangKeluars'));
 
     }
 
@@ -56,10 +56,50 @@ class KeuanganController extends Controller
             'deskripsi' => $request->input('deskripsi'),
         ]);
 
-        // Redirect ke halaman MoneyTrack dengan pesan sukses
-        return redirect()->route('MoneyTrack')->with('success', 'Uang masuk berhasil ditambahkan.');
+        // Redirect ke halaman moneyTrack dengan pesan sukses
+        return redirect()->route('moneyTrack')->with('success', 'Uang masuk berhasil ditambahkan.');
 
     }
+
+    // Menampilkan form tambah uang keluar
+    public function createUangKeluar()
+    {
+        return view('keuangan.tambahUangKeluar');
+    }
+
+    //meyimpan data uang keluar
+    public function storeUangKeluar(Request $request)
+    {
+        $request->validate([
+            'jumlah' => 'required|numeric|min:1',
+            'kategori' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'deskripsi' => 'nullable|string|max:500',
+            'metode_pembayaran' => 'required|string|max:50',
+        ], [
+            'jumlah.required' => 'Jumlah uang keluar harus diisi.',
+            'jumlah.numeric' => 'Jumlah uang keluar harus berupa angka.',
+            'jumlah.min' => 'Jumlah uang keluar minimal 1.',
+            'kategori.required' => 'Kategori harus diisi.',
+            'tanggal.required' => 'Tanggal harus diisi.',
+            'tanggal.date' => 'Format tanggal tidak valid.',
+            'deskripsi.max' => 'Deskripsi tidak boleh lebih dari 500 karakter.',
+            'metode_pembayaran.required' => 'Metode pembayaran harus diisi.',
+        ]);
+
+        // Menyimpan data uang keluar
+        UangKeluar::create([
+            'jumlah' => $request->input('jumlah'),
+            'kategori' => $request->input('kategori'),
+            'tanggal' => $request->input('tanggal'),
+            'deskripsi' => $request->input('deskripsi'),
+            'metode_pembayaran' => $request->input('metode_pembayaran'),
+        ]);
+
+        // Redirect ke halaman moneyTrack dengan pesan sukses
+        return redirect()->route('moneyTrack')->with('success', 'Uang keluar berhasil ditambahkan.');
+    }
+
 
 
 }

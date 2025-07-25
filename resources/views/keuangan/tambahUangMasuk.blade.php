@@ -13,7 +13,7 @@
         <div class="flex items-center justify-between mb-8">
             <div>
                 <h1 class="text-2xl font-bold text-gray-800">
-                    <a href="{{ route('MoneyTrack') }}" class="text-blue-600 hover:text-blue-800">
+                    <a href="{{ route('moneyTrack') }}" class="text-blue-600 hover:text-blue-800">
                         <i class="fas fa-arrow-left mr-2"></i>
                     </a>
                     Tambah Uang Masuk
@@ -25,14 +25,7 @@
             </div>
 
 
-            {{-- alert success message --}}
-            @if (session('success'))
-                <div class="mt-4 p-4 bg-green-100 text-green-800 rounded-md">
-                    <i class="fas fa-check-circle mr-2"></i>
-                    {{ session('success') }}
-                </div>
-            
-            @endif
+           
         </div>
 
         <!-- Form -->
@@ -48,9 +41,11 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="text-gray-500">Rp</span>
                         </div>
-                        <input type="text" id="jumlah" name="jumlah" 
+                        <input type="text" id="jumlah" name="jumlah_formated" 
                                class="block w-full pl-12 pr-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
                                placeholder="0" required>
+                        
+                        <input type="hidden" name="jumlah" id="jumlah_numeric">
 
                         @error('jumlah')
                             <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
@@ -65,12 +60,12 @@
                     </label>
                     <select id="kategori" name="kategori" 
                             class="block w-full pl-3 pr-10 py-3 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md">
-                        <option value="salary">Gaji</option>
+                        <option value="Gaji">Gaji</option>
                         <option value="bonus">Bonus</option>
                         <option value="freelance">Freelance</option>
-                        <option value="investment">Investasi</option>
-                        <option value="gift">Hadiah</option>
-                        <option value="other">Lainnya</option>
+                        <option value="investasi">Investasi</option>
+                        <option value="Hadiah">Hadiah</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                     @error('kategori')
                         <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
@@ -131,10 +126,6 @@
         </div>
     </div>
 
-    <script>
-        // Set default date to today
-        document.getElementById('tanggal').valueAsDate = new Date();
-        
-    </script>
+  <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
