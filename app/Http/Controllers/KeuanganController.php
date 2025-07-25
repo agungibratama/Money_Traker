@@ -50,10 +50,10 @@ class KeuanganController extends Controller
         ]);
         // Menyimpan data uang masuk
         UangMasuk::create([
-            'jumlah' => $request->jumlah,
-            'kategori' => $request->kategori,
-            'tanggal' => $request->tanggal,
-            'deskripsi' => $request->deskripsi,
+            'jumlah' => $request->input('jumlah'),
+            'kategori' => $request->input('kategori'),
+            'tanggal' => $request->input('tanggal'),
+            'deskripsi' => $request->input('deskripsi'),
         ]);
 
         // Redirect ke halaman MoneyTrack dengan pesan sukses

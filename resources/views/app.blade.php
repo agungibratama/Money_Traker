@@ -69,11 +69,8 @@
                         </p>
 
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-<<<<<<< HEAD
+
                     <a href="{{ route('MoneyTrack') }}">
-=======
-                    <a href="MoneyTrack">
->>>>>>> 199ec0f55df0b4ea7077ca1b98c45a0464a68434
                             <button class="px-8 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-300 transition duration-300 transform hover:scale-105 shadow-lg">
                             Mulai Sekarang
                         </button>

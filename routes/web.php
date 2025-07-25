@@ -14,21 +14,11 @@ Route::get('/', function () {
 
 Route::get('/MoneyTrack', [KeuanganController::class, 'index'])->name('MoneyTrack');
 
-Route::get('/moneyTrack/masuk/create', [KeuanganController::class, 'createUangMasuk'])
-    ->name('moneyTrack.masuk-create');
-Route::post('/moneyTract/masuk', [KeuanganController::class, 'storeUangMasuk'])
-    ->name('moneyTrack.masuk-store');
+Route::get('/moneyTrack/masuk/create', [KeuanganController::class, 'createUangMasuk'])->name('moneyTrack.masuk-create');
 
-Route::get('/MoneyTrack', function () {
-    return view('moneytrack');
-});
-Route::get('/tambahMasuk', function () {
-    return view('tambahUangMasuk');
-});
+Route::post('/moneyTract/masuk', [KeuanganController::class, 'storeUangMasuk'])->name('moneyTrack.masuk-store');
 
-Route::get('/tambahKeluar', function () {
-    return view('tambahUangKeluar');
-});
+
 
 
 

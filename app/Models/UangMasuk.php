@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
-use illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UangMasuk extends Model
 {
