@@ -64,7 +64,7 @@
                 </div>
                 
                 <div class="space-y-4">
-                    @foreach ($uangMasuks as $uangmasuk)
+                    @foreach ($uangMasuks as $uangMasuk)
 
                     <!-- Transaction Item 1 -->
                     <div class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
@@ -72,12 +72,12 @@
                             <i class="fas fa-money-bill-wave text-green-600"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="font-medium text-gray-800">{{ $uangmasuk->deskripsi }}</h3>
-                            <p class="text-sm text-gray-500">{{ $uangmasuk->tanggal }}</p>
+                            <h3 class="font-medium text-gray-800">{{ $uangMasuk->deskripsi }}</h3>
+                            <p class="text-sm text-gray-500">{{date_format($uangMasuk->tanggal,"Y/m/d")  }}</p>
                         </div>
                         <div class="text-right">
-                            <p class="font-semibold text-green-600">+ Rp {{ $uangmasuk->jumlah }}</p>
-                            <p class="text-xs text-gray-500">{{ $uangmasuk->kategori }}</p>
+                            <p class="font-semibold text-green-600">+ Rp {{ number_format($uangMasuk->jumlah,2,",",".") }}</p>
+                            <p class="text-xs text-gray-500">{{ $uangMasuk->kategori }}</p>
                         </div>
                     </div>
                         
@@ -109,12 +109,12 @@
                         </div>
                         <div class="flex-1">
                             <h3 class="font-medium text-gray-800">{{ $uangKeluar->deskripsi }}</h3>
-                            <p class="text-sm text-gray-500">{{ $uangKeluar->tanggal }}</p>
+                            <p class="text-sm text-gray-500">{{date_format($uangKeluar->tanggal,"Y/m/d")  }}</p>
                         </div>
                         <div class="text-right">
-                            <p class="font-semibold text-red-600">- Rp {{ $uangKeluar->jumlah }}</p>
+                            <p class="font-semibold text-red-600">- Rp {{ number_format($uangKeluar->jumlah,2,",",".") }}</p>
                             <p class="text-xs text-gray-500">{{ $uangKeluar->kategori }}</p>
-                            <p class="text-xs text-gray-500">{{ $uangKeluar->metode_pembayaran }}</p>
+                            <p class="text-xs text-gray-500">Metode Pembayaran: {{ $uangKeluar->metode_pembayaran }}</p>
                         </div>
                     </div>  
                     @endforeach
