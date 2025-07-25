@@ -23,7 +23,11 @@ return new class extends Migration {
     {
         Schema::table('uang_masuks', function (Blueprint $table) {
             //untuk rollback, ubah kembali tipe kolom deskripsi ke string
+
             $table->string('deskripsi')->nullable()->change();
+
+            $table->string('deskripsi')->change();
+
         });
     }
 };
