@@ -100,6 +100,26 @@ class KeuanganController extends Controller
         return redirect()->route('moneyTrack')->with('success', 'Uang keluar berhasil ditambahkan.');
     }
 
+    // Menghapus uang masuk
+    public function destroyUangMasuk($id)
+    {
+        $uangMasuk = UangMasuk::findOrFail($id);
+        $uangMasuk->delete();
+
+        return redirect()->route('moneyTrack')->with('success', 'Uang masuk berhasil dihapus.');
+    }
+
+
+    // Menghapus uang keluar
+    public function destroyUangKeluar($id)
+    {
+        $uangKeluar = UangKeluar::findOrFail($id);
+        $uangKeluar->delete();
+
+        return redirect()->route('moneyTrack')->with('success', 'Uang keluar berhasil dihapus.');
+    }
+
+
 
 
 }

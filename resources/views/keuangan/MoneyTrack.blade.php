@@ -95,6 +95,21 @@
                             <p class="font-semibold text-green-600">+ Rp {{ number_format($uangMasuk->jumlah,2,",",".") }}</p>
                             <p class="text-xs text-gray-500">{{ $uangMasuk->kategori }}</p>
                         </div>
+
+                        {{-- Action Buttons --}}
+                        <div class="display: block space-x-2 ml-4">
+                            <div class="text-blue-600"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></div>
+                            
+                            {{-- tombol hapus --}}
+                        <div class="text-red-600 hover:opacity-75">
+                            {{-- Form untuk menghapus uang masuk --}}   
+                            <form action="{{ route('moneyTrack.masuk-destroy', $uangMasuk->id) }}" method="POST" class="inline">
+                              @csrf
+                              @method('DELETE')  
+                            <button type="submit" onclick="return confirm('Yakin ingin menghapus data ini?')"> <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                        </div>                     
                     </div>
                         
                     @endforeach
@@ -105,9 +120,11 @@
                 </button></a>
                 
             </div>
-            
+            </div>
+
+
             <!-- Uang Keluar -->
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="bg-white rounded-lg shadow-md p-6 ">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-gray-700">Uang Keluar</h2>
                     <span class="bg-red-100 text-red-800 text-sm font-medium px-2.5 py-0.5 rounded">
@@ -132,6 +149,23 @@
                             <p class="text-xs text-gray-500">{{ $uangKeluar->kategori }}</p>
                             <p class="text-xs text-gray-500">Metode Pembayaran: {{ $uangKeluar->metode_pembayaran }}</p>
                         </div>
+
+                        {{-- Action Buttons --}}
+                        <div class="display: block space-x-2 ml-4">
+                            <div class="text-blue-600"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></div>
+                            {{-- tombol hapus --}}
+                        <div class="text-red-600 hover:opacity-75">
+                            {{-- Form untuk menghapus uang masuk --}}   
+                            <form action="{{ route('moneyTrack.keluar-destroy', $uangKeluar->id) }}" method="POST" class="inline">
+                              @csrf
+                                @method('DELETE')  
+                            <button type="submit" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></button>
+                        </form>
+                        </div>
+                        
+
+                        </div>
+                        
                     </div>  
                     @endforeach
                     
@@ -144,7 +178,7 @@
         </div>
         
         <!-- Add Floating Button for Mobile -->
-        <div class="fixed bottom-6 right-6 md:hidden">
+        <div class="fixed bottom-6 right-6 hidden">
             <button class="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition">
                 <i class="fas fa-plus text-xl"></i>
             </button>

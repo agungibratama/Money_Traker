@@ -24,6 +24,12 @@ Route::post('/moneyTract/masuk', [KeuanganController::class, 'storeUangMasuk'])-
 Route::get('/moneyTrack/keluar/create', [KeuanganController::class, "createUangKeluar"])->name('moneyTrack.keluar-create');
 Route::post('/moneyTrack/keluar', [KeuanganController::class, 'storeUangKeluar'])->name('moneyTrack.keluar-store');
 
+// Route untuk menghapus uang masuk
+Route::delete('/moneyTrack/masuk/{id}', [KeuanganController::class, 'destroyUangMasuk'])->name('moneyTrack.masuk-destroy');
+
+// Route untuk menghapus uang keluar
+Route::delete('/moneyTrack/keluar/{id}', [KeuanganController::class, 'destroyUangKeluar'])->name('moneyTrack.keluar-destroy');
+
 
 
 

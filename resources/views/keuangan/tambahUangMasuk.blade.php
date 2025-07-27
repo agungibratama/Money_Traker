@@ -43,7 +43,7 @@
                         </div>
                         <input type="text" id="jumlah" name="jumlah_formated" 
                                class="block w-full pl-12 pr-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
-                               placeholder="0" required>
+                               placeholder="0" autocomplete="off" required>
                         
                         <input type="hidden" name="jumlah" id="jumlah_numeric">
 
