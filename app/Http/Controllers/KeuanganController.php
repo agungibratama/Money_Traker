@@ -120,6 +120,72 @@ class KeuanganController extends Controller
     }
 
 
+    // Menampilkan form edit uang masuk
+    public function editUangMasuk($id)
+    {
+        $uangMasuk = UangMasuk::findOrFail($id);
+        return view('keuangan.editUangMasuk', compact('uangMasuk'));
+    }
+
+    // Memperbarui data uang masuk
+    public function updateUangMasuk(Request $request, $id)
+    {
+        $request->validate([
+            'jumlah' => 'required|numeric|min:1',
+            'kategori' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'deskripsi' => 'nullable|string|max:500',
+        ], [
+            'jumlah.required' => 'Jumlah uang masuk harus diisi.',
+            'jumlah.numeric' => 'Jumlah uang masuk harus berupa angka.',
+            'jumlah.min' => 'Jumlah uang masuk minimal 1.',
+            'kategori.required' => 'Kategori harus diisi.',
+            'tanggal.required' => 'Tanggal harus diisi.',
+            'tanggal.date' => 'Format tanggal tidak valid.',
+            'deskripsi.max' => 'Deskripsi tidak boleh lebih dari 500 karakter.',
+        ]);
+
+        $uangMasuk = UangMasuk::findOrFail($id);
+        $uangMasuk->update($request->all());
+
+        return redirect()->route('moneyTrack')->with('success', 'Uang masuk berhasil diperbarui.');
+    }
+
+
+    // Menampilkan form edit uang keluar
+    public function editUangKeluar($id)
+    {
+        $uangKeluar = UangKeluar::findOrFail($id);
+        return view('keuangan.editUangKeluar', compact('uangKeluar'));
+    }
+
+    // Memperbarui data uang keluar
+    public function updateUangKeluar(Request $request, $id)
+    {
+        $request->validate([
+            'jumlah' => 'required|numeric|min:1',
+            'kategori' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'deskripsi' => 'nullable|string|max:500',
+            'metode_pembayaran' => 'required|string|max:50',
+        ], [
+            'jumlah.required' => 'Jumlah uang keluar harus diisi.',
+            'jumlah.numeric' => 'Jumlah uang keluar harus berupa angka.',
+            'jumlah.min' => 'Jumlah uang keluar minimal 1.',
+            'kategori.required' => 'Kategori harus diisi.',
+            'tanggal.required' => 'Tanggal harus diisi.',
+            'tanggal.date' => 'Format tanggal tidak valid.',
+            'deskripsi.max' => 'Deskripsi tidak boleh lebih dari 500 karakter.',
+            'metode_pembayaran.required' => 'Metode pembayaran harus diisi.',
+        ]);
+
+        $uangKeluar = UangKeluar::findOrFail($id);
+        $uangKeluar->update($request->all());
+
+        return redirect()->route('moneyTrack')->with('success', 'Uang keluar berhasil diperbarui.');
+
+    }
+
 
 
 }

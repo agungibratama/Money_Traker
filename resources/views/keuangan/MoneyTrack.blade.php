@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Document</title>
+    <title>Money Tracker</title>
       @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 font-sans">
@@ -56,12 +56,18 @@
         <!-- Transaction Tabs -->
         <div class="mb-6">
             <div class="flex border-b border-gray-200">
+
+                {{-- tab semua transaksi --}}
                 <button class="py-2 px-4 font-medium text-blue-600 border-b-2 border-blue-600">
                     <i class="fas fa-list mr-2"></i>Semua Transaksi
                 </button>
+
+                {{-- tab semua uang masuk --}}
                 <button class="py-2 px-4 font-medium text-gray-500  hover:text-blue-600">
                     <i class="fas fa-arrow-down mr-2 text-green-500"></i>Uang Masuk
                 </button>
+
+                {{-- tab semua uang keluar --}}
                 <button class="py-2 px-4 font-medium text-gray-500 hover:text-blue-600">
                     <i class="fas fa-arrow-up mr-2 text-red-500"></i>Uang Keluar
                 </button>
@@ -97,8 +103,11 @@
                         </div>
 
                         {{-- Action Buttons --}}
-                        <div class="display: block space-x-2 ml-4">
-                            <div class="text-blue-600"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></div>
+
+                        {{-- tombol edit --}}
+                        <div class="space-x-2 ml-4">
+                            <div class="text-blue-600"><a href="{{ route('moneyTrack.masuk-edit', $uangMasuk->id) }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </div>
                             
                             {{-- tombol hapus --}}
                         <div class="text-red-600 hover:opacity-75">
@@ -111,6 +120,7 @@
                         </form>
                         </div>                     
                     </div>
+                    </div>
                         
                     @endforeach
                     
@@ -119,7 +129,6 @@
                     <i class="fas fa-plus mr-2"></i>Tambah Uang Masuk
                 </button></a>
                 
-            </div>
             </div>
 
 
@@ -151,8 +160,12 @@
                         </div>
 
                         {{-- Action Buttons --}}
-                        <div class="display: block space-x-2 ml-4">
-                            <div class="text-blue-600"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></div>
+
+                        {{-- tombol edit --}}
+                        <div class="space-x-2 ml-4">
+                            <div class="text-blue-600"><a href="{{ route('moneyTrack.keluar-edit', $uangKeluar->id) }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </div>
+
                             {{-- tombol hapus --}}
                         <div class="text-red-600 hover:opacity-75">
                             {{-- Form untuk menghapus uang masuk --}}   

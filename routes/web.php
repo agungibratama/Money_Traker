@@ -32,6 +32,20 @@ Route::delete('/moneyTrack/keluar/{id}', [KeuanganController::class, 'destroyUan
 
 
 
+//route untuk menampilkan form edit uang masuk
+Route::get('/moneyTrack/masuk/{id}/edit', [KeuanganController::class, 'editUangMasuk'])->name('moneyTrack.masuk-edit');
+
+//route untuk update uang masuk
+Route::put('/moneyTrack/masuk/{id}', [KeuanganController::class, 'updateUangMasuk'])->name('moneyTrack.masuk-update');
+
+
+//route untuk menampilkan form edit uang keluar
+Route::get('/moneyTrack/keluar/{id}/edit', [KeuanganController::class, 'editUangKeluar'])->name('moneyTrack.keluar-edit');
+
+//route untuk update uang keluar
+Route::put('/moneyTrack/keluar/{id}', [KeuanganController::class, 'updateUangKeluar'])->name('moneyTrack.keluar-update');
+
+
 
 
 
