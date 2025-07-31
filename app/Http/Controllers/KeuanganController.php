@@ -17,8 +17,8 @@ class KeuanganController extends Controller
         $totalSaldo = $totalMasuk - $totalKeluar;
 
         //mengambil data uang masuk dan uang keluar terbaru
-        $uangMasuks = UangMasuk::latest()->paginate(5);
-        $uangKeluars = UangKeluar::latest()->paginate(5);
+        $uangMasuks = UangMasuk::latest()->paginate(5, ['*'], 'uang_masuk_page');
+        $uangKeluars = UangKeluar::latest()->paginate(5, ['*'], 'uang_keluar_page');
 
         //mengirim data ke view
         return view('keuangan.moneyTrack', compact('totalMasuk', 'totalKeluar', 'totalSaldo', 'uangMasuks', 'uangKeluars'));

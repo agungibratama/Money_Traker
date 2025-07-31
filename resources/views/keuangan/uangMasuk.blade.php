@@ -47,14 +47,14 @@
                     
                 </div>
 
-               <!-- Pagination -->
-            <div class="mt-20 flex justify-center">
-               {{ $uangMasuks->onEachSide(1)->links('components.custom-pagination') }}
-            </div>
-
+              {{-- pagination --}}
+              <div class="mt-6 flex justify-center">
+    {{ $uangMasuks->links('components.custom-pagination', ['tabHash' => '#masuk']) }}
+</div>
 
                 <a href="{{ route('moneyTrack.masuk-create') }}"><button class="mt-4 w-full py-2 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition">
                     <i class="fas fa-plus mr-2"></i>Tambah Uang Masuk
                 </button></a>
                 
             </div>
+</script>
