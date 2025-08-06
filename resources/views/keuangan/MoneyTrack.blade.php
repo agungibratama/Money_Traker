@@ -28,7 +28,10 @@
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <!-- Header -->
         <header class="mb-8">
-            <h1 class="text-3xl font-bold text-indigo-600">Money Tracker</h1>
+            <a href="{{ route('moneyTrack') }}">
+                <h1 class="text-3xl font-bold text-indigo-600">Money Tracker</h1>
+
+            </a>
             <p class="text-gray-600">Kelola keuangan Anda dengan mudah</p>
         </header>
 

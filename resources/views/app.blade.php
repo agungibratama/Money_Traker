@@ -25,7 +25,7 @@
                     <a href="#fitur" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Fitur</a>
                     <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Harga</a>
                     <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Tentang</a>
-                    <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">Masuk</a>
+                    <a href="{{ route('login') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">Masuk</a>
                 </div>
                 <div class="-mr-2 flex items-center sm:hidden">
                     <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">

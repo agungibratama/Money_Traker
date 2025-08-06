@@ -46,8 +46,12 @@ Route::get('/moneyTrack/keluar/{id}/edit', [KeuanganController::class, 'editUang
 Route::put('/moneyTrack/keluar/{id}', [KeuanganController::class, 'updateUangKeluar'])->name('moneyTrack.keluar-update');
 
 
+// Route untuk menampilkan form login
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
 
+// Route untuk menampilkan form register
+Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
 
-
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register.store');
 
 
